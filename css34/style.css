@@ -1,0 +1,25 @@
+.fst-txt {
+font-family: "Open Sans", "Arial" sans-serif;
+font-size: 20px;
+line-height: 30px;
+font-weight: 300;
+font-style: italic;
+}
+.sec-txt {
+    text-decoration: line-through;
+}
+.thrd-txt {
+    text-align: center;
+}
+.frth-txt {
+    color:violet;
+    word-spacing: 30px;
+    text-decoration: overline ;
+    text-decoration-style: wavy;
+    text-shadow: 0.5px 0.5px 0.5px blueviolet;
+}
+.ffh-txt {
+    letter-spacing: 5px;
+    text-decoration: underline;
+    text-decoration-style: double;
+}
