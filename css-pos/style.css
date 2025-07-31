@@ -1,0 +1,24 @@
+.block {
+    background: #e7e6e6;
+    border-radius: 20px 0 0 20px;
+    height: 400px;
+    width: 1000px;
+    overflow: auto;
+    border: 1px solid black;
+
+}
+
+.box {
+    margin: 5px;
+    padding: 15px;
+    box-shadow: inset 1px 0px 10px 0.5px black;
+display: inline-block;
+    border-radius: 20px;
+    width: 200px;
+    height: 150px;
+    background: rgb(216, 190, 120);
+}
+
+h2 {
+    text-align: center;
+}
