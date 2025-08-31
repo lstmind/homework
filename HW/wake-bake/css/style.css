@@ -311,7 +311,7 @@
         position: fixed;
         inset: 0;
         z-index: 10;
-        background: var(--general-bg);
+        background: var(--accent-bg);
         font-size: 24px;
         padding: 26vh 15px 30px;
 
@@ -362,4 +362,5 @@
     .hero__title {
         font-size: 12vw;
     }
+
 }
