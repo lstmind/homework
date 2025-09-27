@@ -104,7 +104,7 @@
     right: 20px;
 }
 
-.modal__cancel path rect {
+.modal__cancel path, rect {
     transition: var(--transition);
 }
 
@@ -832,5 +832,6 @@ font-size: 35px;
 .modal__window {
     padding: 0px 15px 45px;
 }
+
 
 }
