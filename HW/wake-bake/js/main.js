@@ -51,27 +51,27 @@
 
         const tabControl = e.target.closest('.tab-controls__link')
 
-        if(!tabControl) return
+        if (!tabControl) return
         e.preventDefault()
-        if(tabControl.classList.contains('tab-controls__link--active')) return
+        if (tabControl.classList.contains('tab-controls__link--active')) return
 
         const tabContentID = tabControl.getAttribute('href')
         const tabContent = document.querySelector(tabContentID)
         const activeControl = document.querySelector('.tab-controls__link--active')
         const activeContent = document.querySelector('.tab-content--show')
-        
+
         activeControl.classList.remove('tab-controls__link--active')
         activeContent.classList.remove('tab-content--show')
-        
+
         tabControl.classList.add('tab-controls__link--active')
         tabContent.classList.add('tab-content--show')
-        
+
 
     }
 
     // Accordion
 
-const accordionLists = document.querySelectorAll('.accordion-list');
+    const accordionLists = document.querySelectorAll('.accordion-list');
 
     accordionLists.forEach(el => {
 
@@ -99,6 +99,39 @@ const accordionLists = document.querySelectorAll('.accordion-list');
             }
 
         });
+
+    });
+
+
+    // Slider-gallery
+
+    const swiper = new Swiper('.gallery__slider', {
+
+        spaceBetween: 15,
+        slidesPerView: 1.5,
+
+        pagination: {
+            el: '.gallery__pagination',
+            type: 'fraction',
+        },
+
+        navigation: {
+            nextEl: '.gallery__next',
+            prevEl: '.gallery__prev',
+        },
+
+
+        breakpoints: {
+            601: {
+                spaceBetween: 20,
+            },
+            801: {
+                spaceBetween: 32,
+            },
+            1101: {
+                slidesPerView: 4,
+            }
+        }
 
     });
 })()
