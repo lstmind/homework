@@ -105,7 +105,7 @@
 
     // Slider-gallery
 
-    const swiper = new Swiper('.gallery__slider', {
+    new Swiper('.gallery__slider', {
 
         spaceBetween: 15,
         slidesPerView: 1.5,
@@ -137,7 +137,7 @@
 
     // Testimonials
 
-        new Swiper('.testimonials__slider', {
+    new Swiper('.testimonials__slider', {
 
         spaceBetween: 0,
         slidesPerView: 1,
@@ -162,4 +162,10 @@
             }
         }
     });
+
+    // Telephone mask
+
+    const telInputs = document.querySelectorAll('input[type="tel"')
+    const im = new Inputmask('+7 (999) 999-99-99')
+    im.mask(telInputs)
 })()
