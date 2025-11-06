@@ -9,6 +9,11 @@
   --transition: all 0.4s;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+}
+
 .body {
   font-family: "Archivo", "Arial", sans-serif;
   background: #141414;
@@ -56,4 +61,5 @@
     left: 50%;
     transform: translate(-50%, -50%);
     transition: var(--transition);
+
 }
