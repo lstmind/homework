@@ -1,0 +1,59 @@
+/* ========== GLOBAL SETTING ========== */
+
+:root {
+  --global-bg: #141414;
+  --accent-bg: #E3E3DE;
+  --accent-color: #f47521;
+  --text-color: #979797;
+  --text-uppercase: uppercase;
+  --transition: all 0.4s;
+}
+
+.body {
+  font-family: "Archivo", "Arial", sans-serif;
+  background: #141414;
+  color: #fff;
+  line-height: 1.6875;
+  font-weight: 400;
+}
+
+.wrapper {
+  min-height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1735px;
+  margin: 0 auto;
+  padding: 0 15px;
+  height: 100%;
+}
+
+.container__two {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 px;
+  height: 100%;
+}
+
+.body--opened-menu {
+  overflow: hidden;
+}
+
+.button {
+  width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: var(--transition);
+}

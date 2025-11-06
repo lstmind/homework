@@ -1,0 +1,147 @@
+/* ===== FOOTER ===== */
+.footer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-top: 63px;
+  position: relative;
+}
+
+.footer-head::after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  opacity: 0.5;
+  background: #FFF;
+  position: absolute;
+  bottom: -60px;
+}
+
+.footer-head__img {
+  display: flex;
+  align-items: center;
+  max-width: 269px;
+  width: 100%;
+}
+
+.footer-head__img img {
+  width: 100%;
+}
+
+.footer-head__text {
+  font-family: 'Oswald';
+  font-size: 50.275px;
+  font-weight: 500;
+  line-height: normal;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-head__text::before {
+  content: '';
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -34px;
+  z-index: -1;
+  opacity: 0;
+  transition: var(--transition);
+}
+.footer-head__text:hover::before {
+  opacity: 1;
+
+}
+
+
+.footer-main {
+  margin-top: 160px;
+  display: flex;
+  justify-content: space-between;
+  gap: 166px;
+}
+
+.adress {
+  display: flex;
+  flex-direction: column;
+}
+
+.adress a {
+  transition: var(--transition);
+}
+
+.adress a:hover {
+  color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.mail,
+.tel,
+.col__title {
+  font-family: 'Oswald';
+  font-size: 42px;
+  line-height: normal;
+}
+
+.footer-main__text {
+  margin-top: 50px;
+}
+
+.socials__list {
+  display: flex;
+  gap: 45px;
+  margin-top: 24px;
+}
+
+.socials__item path {
+  transition: var(--transition);
+}
+
+.socials__link:hover path {
+  fill: var(--accent-color);
+}
+
+
+.footer__col {
+  display: flex;
+  gap: 166px;
+}
+
+.footer__col-hours,
+.footer__col-location {
+  width: 225px;
+}
+
+.footer__col--flex {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.col__sub,
+.col__text {
+  color: var(--text-color);
+  font-family: Archivo;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.copy {
+  display: flex;
+  justify-content: center;
+  background: #303030;
+  margin-top: 140px;
+}
+
+.copy__text {
+  font-family: Archivo;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.94;
+  padding: 28px 0;
+}
