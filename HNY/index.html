@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Письмо Деду Морозу</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Pacifico&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --christmas-red: #a82325;
+            --christmas-green: #1b4d2e;
+            --gold: #d4af37;
+            --parchment-bg: #f4e4bc;
+            --ink-color: #3e2f22;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Roboto Slab', serif;
+            /* Фон: Уютная комната */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1543589077-47d81606c1bf?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* --- АНИМИРОВАННАЯ ГИРЛЯНДА --- */
+        .garland {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: 100px;
+            z-index: 20;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+        }
+
+        .light {
+            width: 12px; height: 18px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            top: -5px;
+            animation: flash 1.5s infinite alternate;
+        }
+
+        .light:nth-child(4n+1) { background: #ff4d4d; box-shadow: 0 0 15px #ff4d4d; animation-delay: 0s; }
+        .light:nth-child(4n+2) { background: #4dff4d; box-shadow: 0 0 15px #4dff4d; animation-delay: 0.4s; }
+        .light:nth-child(4n+3) { background: #4d4dff; box-shadow: 0 0 15px #4d4dff; animation-delay: 0.8s; }
+        .light:nth-child(4n+4) { background: #ffff4d; box-shadow: 0 0 15px #ffff4d; animation-delay: 1.2s; }
+
+        @keyframes flash {
+            from { opacity: 0.4; filter: brightness(0.5); }
+            to { opacity: 1; filter: brightness(1.5); }
+        }
+
+        /* Остальные элементы */
+        #snow-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; }
+
+        .letter-container {
+            position: relative;
+            width: 90%; max-width: 550px;
+            perspective: 1000px;
+            z-index: 10;
+            margin-top: -5vh; /* Приподнимаем письмо */
+        }
+
+        .parchment {
+            background-color: var(--parchment-bg);
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            padding: 50px 40px;
+            border-radius: 3px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border: 12px solid transparent;
+            border-image: repeating-linear-gradient(45deg, var(--christmas-red), var(--christmas-red) 15px, #fff 15px, #fff 30px, var(--christmas-green) 30px, var(--christmas-green) 45px, #fff 45px, #fff 60px) 15;
+            transition: transform 0.6s ease-out;
+        }
+
+        .seal {
+            position: absolute; bottom: 20px; right: 20px;
+            width: 70px; height: 70px; background: #8b0000;
+            border-radius: 50%; box-shadow: inset 0 0 15px rgba(0,0,0,0.5), 2px 2px 5px rgba(0,0,0,0.3);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); font-size: 2rem; transform: rotate(-15deg);
+            border: 2px solid #a00;
+        }
+
+        h1 { font-family: 'Mountains of Christmas', cursive; font-size: 3rem; text-align: center; color: var(--christmas-red); margin-bottom: 20px; }
+        label { font-family: 'Pacifico', cursive; color: var(--christmas-green); display: block; margin-bottom: 8px; font-size: 1.2rem; }
+        input, textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,0.1); font-family: 'Pacifico', cursive; font-size: 1.3rem; color: var(--ink-color); outline: none; }
+        textarea { line-height: 38px; height: 220px; background-image: linear-gradient(transparent, transparent 37px, rgba(0,0,0,0.05) 37px); background-size: 100% 38px; resize: none; }
+
+        .send-btn {
+            display: block; width: 100%; padding: 18px; margin-top: 20px;
+            font-family: 'Mountains of Christmas', cursive; font-size: 2rem; color: white;
+            background: linear-gradient(to bottom, #d42426, #8b0000);
+            border: none; border-radius: 8px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+        .send-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+        footer { position: fixed; bottom: 10px; width: 100%; text-align: center; color: rgba(255,255,255,0.7); font-size: 0.9rem; z-index: 100; text-shadow: 1px 1px 2px #000; }
+
+        .letter-sent { animation: flyAway 2s forwards ease-in-out; }
+        @keyframes flyAway { 100% { transform: translateY(-150vh) rotateZ(30deg) scale(0.1); opacity: 0; } }
+
+        #success-message { display: none; text-align: center; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%); color: white; z-index: 100; }
+    </style>
+</head>
+<body>
+
+    <div class="garland" id="garland"></div>
+
+    <canvas id="snow-canvas"></canvas>
+
+    <main class="letter-container" id="main-container">
+        <div class="parchment" id="letter-form-wrapper">
+            <div class="seal">🎄</div>
+            <h1>Дорогой Дедушка Мороз</h1>
+            
+            <form id="santa-form">
+                <div class="form-group">
+                    <label for="name">Меня зовут:</label>
+                    <input type="text" id="name" required value="Раб системы">
+                </div>
+                
+                <div class="form-group">
+                    <label for="wishlist">Моё заветное желание:</label>
+                    <textarea id="wishlist" required></textarea>
+                </div>
+                
+                <button type="submit" class="send-btn">Положить под ёлку ✨</button>
+            </form>
+        </div>
+    </main>
+
+    <div id="success-message">
+        <div style="font-size: 6rem;">🎁🦌</div>
+        <h2 style="font-family: 'Mountains of Christmas'; font-size: 4rem; color: var(--gold);">Письмо в пути!</h2>
+        <p style="font-family: 'Pacifico'; font-size: 1.5rem;">Чудо обязательно случится...</p>
+    </div>
+
+    <footer>
+        <p>© 2026 Магия Нового Года. Все права защищены.    </p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Создаем лампочки для гирлянды
+        const garland = document.getElementById('garland');
+        for (let i = 0; i < 25; i++) {
+            const light = document.createElement('div');
+            light.className = 'light';
+            garland.appendChild(light);
+        }
+
+        const textarea = document.getElementById('wishlist');
+        const letter = document.getElementById('letter-form-wrapper');
+        
+        // --- 1. Плавная печать ---
+        const message = "Дедушка Мороз, я очень старался вести себя хорошо. Пожалуйста, принеси в наш дом радость, здоровье моим родителям и немного волшебства для каждого из нас. Пусть эта зима станет по-настоящему сказочной...";
+        let i = 0;
+        function type() {
+            if (i < message.length) {
+                textarea.value += message.charAt(i); i++;
+                setTimeout(type, 50);
+            }
+        }
+        setTimeout(type, 1500);
+
+        // --- 2. Снег ---
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+        function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+
+        for (let i = 0; i < 70; i++) {
+            particles.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 2 + 1, d: Math.random() * 0.4 + 0.2, s: Math.random() * 0.02 });
+        }
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+            ctx.beginPath();
+            particles.forEach(p => {
+                ctx.moveTo(p.x, p.y); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                p.y += p.d; p.x += Math.sin(p.y * p.s) * 0.5;
+                if (p.y > height) p.y = -10;
+            });
+            ctx.fill();
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // --- 3. Наклон ---
+        document.addEventListener('mousemove', (e) => {
+            let xAxis = (window.innerWidth / 2 - e.pageX) / 200;
+            let yAxis = (window.innerHeight / 2 - e.pageY) / 200;
+            if(!letter.classList.contains('letter-sent'))
+                letter.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // --- 4. Отправка ---
+        document.getElementById('santa-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            letter.classList.add('letter-sent');
+            setTimeout(() => {
+                document.getElementById('main-container').style.display = 'none';
+                document.getElementById('success-message').style.display = 'block';
+            }, 1900);
+        });
+    });
+    </script>
+</body>
+</html>
